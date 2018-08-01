@@ -22,7 +22,7 @@ router.get('/', (req, res, next) => {
  
 router.get('/guest', (req, res, next) => {
   Path.find()
-    .limit(2) // Updated to 3 when more paths are added
+    .limit(3)
     .populate('creator', 'name')
     .then(paths => {
       paths[0].videos = [paths[0].videos[0]]; 

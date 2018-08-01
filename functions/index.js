@@ -5,9 +5,8 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 
-// Config
+// Config for development
 require('dotenv').config();
-const CLIENT_ORIGIN = require('./config').CLIENT_ORIGIN || functions.config().client.origin;
 
 // Dependencies
 const cors = require('cors');
@@ -26,9 +25,7 @@ dbConnect();
 
 // Enable Cross-Origin Resource Sharing
 app.use(
-  cors(/*{
-    origin: CLIENT_ORIGIN
-  }*/)
+  cors()
 );
 
 // Enable morgan logging

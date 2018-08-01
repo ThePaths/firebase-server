@@ -14,7 +14,7 @@ router.get('/all', jwtAuth, (req, res, next) => {
   User.find()
     .sort('name')
     .then(results => {
-      res.set('Cache-control', 'public, max-age=60, s-maxage=60'); 
+      res.set('Cache-control', 'public, max-age=1800, s-maxage=1800'); 
       res.json(results);
     })
     .catch(err => next(err));
