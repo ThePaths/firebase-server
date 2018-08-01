@@ -27,7 +27,7 @@ router.get('/guest', (req, res, next) => {
     .then(paths => {
       paths[0].videos = [paths[0].videos[0]]; 
       paths[1].videos = [paths[1].videos[0]]; 
-      //paths[2].videos = [paths[2].videos[0]];
+      paths[2].videos = [paths[2].videos[0]];
       res.set('Cache-control', 'public, max-age=86400, s-maxage=86400'); 
       res.json(paths);
     })
@@ -51,6 +51,7 @@ router.get('/:pathId', (req, res, next) => {
     })
     .then(path => {
       if(path){
+        res.set('Cache-control', 'public, max-age=3600, s-maxage=3600'); 
         res.json(path);
       } else {
         Promise.reject({

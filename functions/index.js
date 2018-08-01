@@ -11,7 +11,7 @@ const CLIENT_ORIGIN = require('./config').CLIENT_ORIGIN || functions.config().cl
 
 // Dependencies
 const cors = require('cors');
-// const morgan = require('morgan');
+const morgan = require('morgan');
 const passport = require('passport');
 const { dbConnect } = require('./db-mongoose');
 
@@ -31,6 +31,10 @@ app.use(
   }*/)
 );
 
+// Enable morgan logging
+app.use(morgan('common'));
+
+// Testing endpoint
 app.get('/currentTime', (req, res) => {
   res.json(Date.now());
 });
