@@ -5,7 +5,7 @@ const router = express.Router();
 const passport = require('passport');
 // Models & Schemas
 const UserPath = require('../models/userPath');
-const Path = require('../models/path');
+require('../models/path'); // Used by populate
 // Middleware
 const jwtAuth = passport.authenticate('jwt', { session: false, failWithError: true });
 

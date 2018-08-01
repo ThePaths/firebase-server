@@ -7,12 +7,11 @@ app.use(express.json());
 
 // Config
 require('dotenv').config();
-functions.config();
-const { PORT, CLIENT_ORIGIN } = require('./config');
+const CLIENT_ORIGIN = require('./config').CLIENT_ORIGIN || functions.config().client.origin;
 
 // Dependencies
 const cors = require('cors');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const passport = require('passport');
 const { dbConnect } = require('./db-mongoose');
 

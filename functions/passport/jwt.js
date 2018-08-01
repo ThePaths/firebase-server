@@ -1,7 +1,7 @@
-'use strict';
 
+const functions = require('firebase-functions');
 const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
-const { JWT_SECRET } = require('../config');
+const JWT_SECRET = require('../config').JWT_SECRET || functions.config().jwt.secret;
 
 const options = {
   secretOrKey: JWT_SECRET,
