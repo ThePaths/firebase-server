@@ -23,11 +23,11 @@ function createAuthToken (user) {
 
 router.post('/login', localAuth, (req, res) => {
   const authToken = createAuthToken(req.user);
-  res.json({ authToken });
+  res.status(200).json({ authToken });
 });
 
 router.post('/register', (req, res) => {
-  let {email, username, password } = req.body;
+  let { email, username, password } = req.body;
 
   return User.find({username})
     .count()
