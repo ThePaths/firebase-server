@@ -15,27 +15,32 @@ The API is organized around REST acrchitecture. All request and response bodies 
 User's are authenticated using JSON Web Tokens. Most enpoints require a JWT in the request header, `"Authorization": "Bearer <JWT>"`. To get a JWT call `POST /auth/login` with a username and password. To create a user with a username and password call `POST /auth/register`.
 
 #### POST /auth/register
-For creating a user.
+<small>For creating a user.</small>
 
 Request Body:
 ```json
+{
   "username":<String>,
   "email":<String>,
   "password":<String>
+}
 ```
-Successful Response Body, Status 201:
+Successful Response Body, Status `201`:
 ```json
+{
   "username":<String>,
-  "email":<String>
+  "email":<String
+}
 ```
-Unsuccessful Response:
-
-Username Taken, Status 422:
+Unsuccessful Response Body: \
+Username Taken, Status `422`:
 ```json
+{
   "code": 422,
   "reason": "ValidationError",
   "message": "Username already taken",
-  "location": "username"
+  "location": "regusername"
+}
 ```
 
 #### POST /auth/login
@@ -43,18 +48,99 @@ For retrieving a JWT to put in the header of future requests. JWTs expire in 30 
 
 Request Body:
 ```json
+{
   "username":<String>,
   "password":<String>
+}
 ```
-Successful Response Body, Status 200:
+Successful Response Body, Status `200`:
 ```json
+{
   "authToken":<String>,
+}
 ```
 
 ### Users
+These's don't have much use on our front-end at the moment. For retrieving user data.
+#### GET /users?id=MongoDbObjectId&username=username
+Retrieve infomation about user with a valid user id or username in the URL query. \
+Successful Response Body, Status `200`:
+```json
+{
+  "username":<String>,
+  "email":<String>
+}
+```
+Returns status `404` if there is no user with the recieved id or username.
+
+Returns status `400` if no id or username is recieved. 
+
 ### Paths
+Retrieve infomation about the paths, which contain their own infomation and references to videos and creators.
+#### GET /paths/
+Retieve all paths. Used for explore page. \s
+Successful Response Body, Status `200`:
+```json
+[
+  {
+    "title": <String>,
+    "creator": 
+      { 
+        "id": <ObjectId>,
+        "name": <String>
+      },
+    "length": <Number> (seconds),
+    "description": <String>, 
+    "videos": [<ObjectId>]
+  },
+  ...
+]
+```
+
+#### GET /paths/:pathId
+Retieve one paths by it's Mongo ObjectId.\
+Successful Response Body, Status `200`:
+```json
+{
+  "title": "Path Title",
+  "creator": 
+    { 
+      "id": "<ObjectId>",
+      "name": "Creator Name"
+    },
+  "length": 1000 /*seconds*/,
+  "description": "Lorem Ipsum", 
+  "videos": 
+    [
+      {
+        "creator": {
+            "youtube": "https://www.youtube.com/channel/channelId",
+            "name": "Creator Name",
+            "id": "<ObjectId>"
+        },
+        "description": "Lorem Ipsum",
+        "replit": "https://repl.it/@<reptUser>/<replId>",
+        "title": "Video Title",
+        "videoId": "<Youtube videoId>",
+        "id": "<ObjectId>"
+      }
+    ]
+}
+```
+
+#### GET /paths/guest
+Retieve 3 paths for displaying guest/tutorial paths \
+Successful Response Body, Status `200`:
+```
+ Same as /paths/:pathId but with 3 paths in an array with only one video each.
+```
+
+
 ### Userpaths
-### Other
+
+
+### Overview
+Combines information about a path and a user's progress in that path. Used for Path Overview Page. \
 
 ## Instructions
 
