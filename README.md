@@ -1,6 +1,6 @@
 # The Path's Backend
 This is the server side code for The Paths,
-you can find the front side code [Here](https://github.com/ThePaths/client)
+you can find the front side code [here](https://github.com/ThePaths/client).
 
 ## Where to find
 
