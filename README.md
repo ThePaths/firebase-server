@@ -1,4 +1,4 @@
-# The Path's Backend
+# Melata's Backend
 This is the server side code for The Paths,
 you can find the front side code [here](https://github.com/ThePaths/client).
 
