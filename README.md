@@ -4,7 +4,7 @@ you can find the front side code [Here](https://github.com/ThePaths/client)
 
 ## Where to find
 
-You can visit a deployed client at: [https://the-paths.firebaseapp.com](https://the-paths.firebaseapp.com)
+You can visit a deployed client at: [https://melata-app.firebaseapp.com](https://the-paths.firebaseapp.com)
 
 The deployed API URL is: [https://the-paths-server.firebaseapp.com](https://the-paths-server.firebaseapp.com)
 
